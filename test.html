@@ -3,25 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FeedLoop | Circular Protein from Organic Waste</title>
-  <meta name="description" content="FeedLoop transforms pre-consumer organic by-products into insect protein, insect oil, and frass fertilizer for local food and agriculture systems." />
+  <title>FeedLoop | Circular Bioconversion Infrastructure</title>
+  <meta name="description" content="FeedLoop converts organic by-products into insect protein, insect oil, and frass fertilizer for local food and agriculture systems." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
       --green: #6BAA27;
+      --green-dark: #355d16;
+      --green-soft: #eef7e8;
       --charcoal: #43444b;
-      --black: #000000;
+      --black: #050505;
       --white: #ffffff;
-      --paper: #e8e8e6;
-      --paper-2: #f5f5f2;
-      --line: #cfcfcb;
-      --text-soft: #56575d;
+      --paper: #f3f1ea;
+      --paper-2: #e7e4dc;
+      --line: #d5d1c7;
+      --text-soft: #5d5e62;
+      --sand: #d9cdb8;
+      --radius: 22px;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -32,450 +35,496 @@
     }
 
     a { color: inherit; text-decoration: none; }
+    .container { width: min(1380px, calc(100% - 72px)); margin: 0 auto; }
 
-    .container {
-      width: min(1440px, calc(100% - 96px));
-      margin: 0 auto;
-    }
-
+    /* NAV */
     header {
       position: sticky;
       top: 0;
       z-index: 50;
-      background: rgba(232, 232, 230, 0.88);
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      background: rgba(243, 241, 234, 0.86);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
     }
 
     .nav {
-      min-height: 112px;
+      min-height: 92px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      gap: 48px;
+      align-items: center;
+      gap: 36px;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 13px;
-      font-size: 1.45rem;
+      gap: 12px;
+      font-size: 1.42rem;
       font-weight: 900;
-      letter-spacing: -0.06em;
-      white-space: nowrap;
+      letter-spacing: -0.055em;
     }
 
-    .logo-mark {
+    .loop-logo {
+      width: 38px;
+      height: 38px;
+      border: 3px solid var(--black);
+      border-radius: 50%;
       position: relative;
-      width: 34px;
-      height: 34px;
-      display: inline-block;
-      transform: rotate(45deg);
+      flex: 0 0 auto;
     }
 
-    .logo-mark::before,
-    .logo-mark::after {
+    .loop-logo::before {
       content: "";
       position: absolute;
-      background: var(--black);
-      border-radius: 999px;
+      width: 15px;
+      height: 15px;
+      border-top: 3px solid var(--green);
+      border-right: 3px solid var(--green);
+      right: -5px;
+      top: 2px;
+      transform: rotate(35deg);
+      background: var(--paper);
     }
 
-    .logo-mark::before {
-      width: 34px;
-      height: 12px;
-      top: 11px;
-      left: 0;
-    }
-
-    .logo-mark::after {
-      width: 12px;
-      height: 34px;
-      top: 0;
-      left: 11px;
+    .loop-logo::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--green);
+      border-radius: 50%;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
 
     nav ul {
       display: flex;
+      gap: clamp(18px, 2.2vw, 38px);
       align-items: center;
-      gap: clamp(20px, 2.3vw, 46px);
       list-style: none;
       font-weight: 800;
-      font-size: 0.98rem;
-      letter-spacing: -0.03em;
+      letter-spacing: -0.025em;
+      font-size: 0.95rem;
+      color: var(--charcoal);
     }
 
     nav a:hover { color: var(--green); }
 
+    .nav-cta {
+      padding: 12px 18px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 999px;
+    }
+
+    .nav-cta:hover { background: var(--green); color: var(--white); }
+
+    /* HERO */
     .hero {
-      min-height: calc(100vh - 112px);
+      padding: 86px 0 92px;
+      min-height: calc(100vh - 92px);
       display: flex;
       align-items: center;
-      padding: 70px 0 95px;
     }
 
-    .hero-grid {
-      width: 100%;
+    .hero-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 360px;
-      align-items: end;
-      gap: 64px;
+      grid-template-columns: minmax(0, 1.05fr) minmax(420px, 0.95fr);
+      gap: 52px;
+      align-items: stretch;
     }
 
-    .eyebrow {
+    .label {
       display: inline-flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 34px;
-      font-size: 0.92rem;
+      gap: 11px;
+      font-size: 0.82rem;
       font-weight: 900;
-      color: var(--charcoal);
-      letter-spacing: -0.02em;
       text-transform: uppercase;
+      letter-spacing: 0.02em;
+      color: var(--green-dark);
+      margin-bottom: 24px;
     }
 
-    .eyebrow::before {
+    .label::before {
       content: "";
-      width: 42px;
-      height: 4px;
+      width: 34px;
+      height: 3px;
       background: var(--green);
-      display: inline-block;
     }
 
     h1 {
-      max-width: 1070px;
-      font-size: clamp(4.5rem, 8.8vw, 9.6rem);
-      line-height: 1.02;
+      font-size: clamp(4rem, 8.2vw, 9rem);
+      line-height: 0.95;
       letter-spacing: -0.085em;
       font-weight: 900;
+      max-width: 980px;
     }
 
-    .underline {
-      display: inline;
-      background-image: linear-gradient(var(--green), var(--green));
-      background-repeat: no-repeat;
-      background-size: 100% 0.09em;
-      background-position: 0 93%;
-      padding-bottom: 0.02em;
-    }
-
-    .hero-side {
-      padding-bottom: 24px;
+    .hero-copy {
+      margin-top: 32px;
       display: grid;
-      gap: 26px;
-      justify-items: start;
-    }
-
-    .down-button {
-      width: 76px;
-      height: 76px;
-      border: 0;
-      border-radius: 50%;
-      background: var(--green);
-      color: var(--white);
-      font-size: 2rem;
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-
-    .down-button:hover { transform: translateY(5px); }
-
-    .hero-side p {
-      max-width: 340px;
-      font-size: 1.08rem;
-      line-height: 1.55;
-      letter-spacing: -0.02em;
-      color: var(--black);
-      font-weight: 600;
-    }
-
-    section {
-      padding: 110px 0;
-      border-top: 1px solid var(--line);
-    }
-
-    .section-label {
-      display: grid;
-      grid-template-columns: 220px minmax(0, 1fr);
-      gap: 48px;
+      grid-template-columns: 160px minmax(0, 620px);
+      gap: 28px;
       align-items: start;
     }
 
-    .kicker {
+    .hero-copy .mini {
+      color: var(--green-dark);
       font-weight: 900;
-      color: var(--green);
-      text-transform: uppercase;
-      font-size: 0.9rem;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
     }
 
-    h2 {
-      max-width: 980px;
-      font-size: clamp(2.8rem, 5.5vw, 6.4rem);
-      line-height: 1.02;
-      letter-spacing: -0.075em;
-      font-weight: 900;
-    }
-
-    .section-copy {
-      max-width: 760px;
-      margin-top: 28px;
-      color: var(--text-soft);
+    .hero-copy p {
       font-size: 1.18rem;
       line-height: 1.65;
+      color: var(--text-soft);
       font-weight: 600;
       letter-spacing: -0.025em;
     }
 
-    .loop-diagram {
-      margin-top: 72px;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border: 1px solid var(--black);
-      background: var(--paper-2);
-    }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
 
-    .loop-step {
-      position: relative;
-      min-height: 250px;
-      padding: 28px;
-      border-right: 1px solid var(--black);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .loop-step:last-child { border-right: 0; }
-
-    .loop-step::after {
-      content: "→";
-      position: absolute;
-      right: -18px;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 22px;
+      border-radius: 999px;
       background: var(--green);
       color: var(--white);
-      display: grid;
-      place-items: center;
       font-weight: 900;
-      z-index: 2;
+      letter-spacing: -0.03em;
+      transition: transform 0.18s ease, background 0.18s ease;
     }
 
-    .loop-step:last-child::after { content: none; }
+    .button:hover { transform: translateY(-2px); background: var(--green-dark); }
+    .button.secondary { background: transparent; color: var(--black); border: 1px solid var(--black); }
+    .button.secondary:hover { background: var(--black); color: var(--white); }
 
-    .loop-number {
-      font-size: 0.86rem;
-      font-weight: 900;
-      color: var(--green);
-    }
-
-    .loop-step h3 {
-      font-size: 1.8rem;
-      line-height: 1.05;
-      letter-spacing: -0.055em;
-      font-weight: 900;
-      margin-bottom: 16px;
-    }
-
-    .loop-step p {
-      color: var(--text-soft);
-      line-height: 1.55;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-    }
-
-    .split-grid {
-      margin-top: 70px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1px;
+    .hero-graphic {
       background: var(--black);
+      color: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      min-height: 610px;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
       border: 1px solid var(--black);
     }
 
-    .block-card {
-      background: var(--paper-2);
-      min-height: 320px;
-      padding: 34px;
+    .graphic-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px;
+      border-bottom: 1px solid rgba(255,255,255,0.16);
+      color: #cfcfcf;
+      font-weight: 800;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .signal { width: 10px; height: 10px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 8px rgba(107,170,39,0.18); }
+
+    .loop-map {
+      position: relative;
+      padding: 44px;
+      display: grid;
+      place-items: center;
+      min-height: 420px;
+      background:
+        linear-gradient(rgba(255,255,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.045) 1px, transparent 1px);
+      background-size: 38px 38px;
+    }
+
+    .loop-ring {
+      width: min(360px, 80%);
+      aspect-ratio: 1;
+      border: 2px solid rgba(255,255,255,0.32);
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .loop-ring::before {
+      content: "";
+      position: absolute;
+      inset: 36px;
+      border: 8px solid var(--green);
+      border-top-color: transparent;
+      border-radius: 50%;
+      transform: rotate(-20deg);
+    }
+
+    .node {
+      position: absolute;
+      width: 132px;
+      padding: 12px;
+      background: var(--paper);
+      color: var(--black);
+      border-radius: 16px;
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      border: 2px solid var(--black);
+    }
+
+    .node span { display: block; margin-top: 5px; color: var(--text-soft); font-size: 0.68rem; font-weight: 700; }
+    .n1 { top: 30px; left: 50%; transform: translateX(-50%); }
+    .n2 { right: 18px; top: 50%; transform: translateY(-50%); }
+    .n3 { bottom: 30px; left: 50%; transform: translateX(-50%); }
+    .n4 { left: 18px; top: 50%; transform: translateY(-50%); }
+
+    .graphic-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .metric {
+      padding: 22px;
+      border-right: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .metric:last-child { border-right: 0; }
+    .metric strong { display: block; color: var(--green); font-size: 1.5rem; letter-spacing: -0.06em; }
+    .metric span { display: block; margin-top: 7px; color: #c7c7c7; font-size: 0.82rem; font-weight: 700; line-height: 1.3; }
+
+    /* SHARED SECTIONS */
+    section { padding: 112px 0; border-top: 1px solid var(--line); }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 54px;
+      align-items: start;
+      margin-bottom: 64px;
+    }
+
+    .kicker {
+      font-size: 0.86rem;
+      font-weight: 900;
+      color: var(--green-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    h2 {
+      font-size: clamp(2.8rem, 5vw, 5.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.075em;
+      font-weight: 900;
+      max-width: 1050px;
+    }
+
+    .section-intro {
+      margin-top: 26px;
+      max-width: 740px;
+      font-size: 1.16rem;
+      line-height: 1.65;
+      color: var(--text-soft);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+    }
+
+    .bento {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr 0.9fr;
+      gap: 18px;
+    }
+
+    .tile {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 32px;
+      min-height: 300px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      overflow: hidden;
     }
 
-    .block-card .topline {
-      font-weight: 900;
-      color: var(--green);
-      font-size: 0.85rem;
+    .tile.dark { background: var(--black); color: var(--white); border-color: var(--black); }
+    .tile.green { background: var(--green); color: var(--white); border-color: var(--green); }
+    .tile.wide { grid-column: span 2; }
+
+    .tile small {
+      color: var(--green-dark);
       text-transform: uppercase;
+      font-weight: 900;
+      letter-spacing: 0.03em;
     }
 
-    .block-card h3 {
-      font-size: 2rem;
-      line-height: 1.02;
+    .tile.dark small, .tile.green small { color: rgba(255,255,255,0.72); }
+
+    .tile h3 {
+      font-size: 2.1rem;
+      line-height: 1.03;
       letter-spacing: -0.06em;
       font-weight: 900;
       margin-bottom: 16px;
     }
 
-    .block-card p, .block-card li {
+    .tile p, .tile li {
       color: var(--text-soft);
       line-height: 1.58;
       font-weight: 600;
       letter-spacing: -0.02em;
     }
 
-    .block-card ul {
-      padding-left: 18px;
-      display: grid;
-      gap: 8px;
+    .tile.dark p, .tile.dark li, .tile.green p, .tile.green li { color: rgba(255,255,255,0.78); }
+    .tile ul { padding-left: 18px; display: grid; gap: 8px; }
+
+    .motif {
+      position: absolute;
+      right: -42px;
+      top: -42px;
+      width: 160px;
+      height: 160px;
+      border: 24px solid rgba(107,170,39,0.14);
+      border-radius: 50%;
     }
 
-    .inverse {
+    .tile.green .motif { border-color: rgba(255,255,255,0.24); }
+
+    /* FLOW SECTION */
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      border: 1px solid var(--black);
+      border-radius: var(--radius);
+      overflow: hidden;
       background: var(--black);
-      color: var(--white);
     }
 
-    .inverse .section-copy,
-    .inverse .block-card p,
-    .inverse .block-card li {
-      color: #c7c7c7;
-    }
-
-    .inverse .block-card {
-      background: #111111;
-      color: var(--white);
-    }
-
-    .inverse .split-grid {
-      background: #3a3a3a;
-      border-color: #3a3a3a;
-    }
-
-    .product-band {
-      margin-top: 76px;
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 28px;
-    }
-
-    .product {
-      border-top: 8px solid var(--green);
-      background: var(--white);
-      padding: 32px;
-      min-height: 360px;
+    .flow-step {
+      background: var(--paper-2);
+      padding: 30px;
+      min-height: 310px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      border-right: 1px solid var(--black);
+      position: relative;
     }
 
-    .product h3 {
-      font-size: 2.45rem;
-      line-height: 1;
-      letter-spacing: -0.075em;
-      font-weight: 900;
+    .flow-step:last-child { border-right: 0; }
+    .flow-step::after {
+      content: "";
+      position: absolute;
+      right: -14px;
+      top: 50%;
+      width: 28px;
+      height: 28px;
+      background: var(--green);
+      clip-path: polygon(0 0, 100% 50%, 0 100%);
+      transform: translateY(-50%);
+      z-index: 4;
+    }
+    .flow-step:last-child::after { display: none; }
+
+    .flow-step .num { color: var(--green-dark); font-weight: 900; }
+    .flow-step h3 { font-size: 1.9rem; line-height: 1.02; letter-spacing: -0.06em; font-weight: 900; }
+    .flow-step p { color: var(--text-soft); font-weight: 600; line-height: 1.55; letter-spacing: -0.02em; }
+
+    /* PRODUCTS */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
     }
 
-    .product p {
-      margin-top: 24px;
-      color: var(--text-soft);
-      font-size: 1.02rem;
-      line-height: 1.6;
-      font-weight: 600;
-    }
-
-    .product-symbol {
-      font-size: 4rem;
-      line-height: 1;
-      font-weight: 900;
-      color: var(--green);
-    }
-
-    .partner-actions {
-      margin-top: 32px;
+    .product {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      min-height: 430px;
+      padding: 34px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 52px;
-      padding: 0 22px;
+    .product::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 8px;
+      width: 100%;
       background: var(--green);
-      color: var(--white);
-      border-radius: 999px;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      transition: transform 0.18s ease;
     }
 
-    .button:hover { transform: translateY(-2px); }
-    .button.dark { background: var(--black); color: var(--white); }
+    .product-code { font-size: 4.3rem; font-weight: 900; color: var(--green); letter-spacing: -0.08em; }
+    .product h3 { font-size: 2.4rem; line-height: 1; letter-spacing: -0.075em; font-weight: 900; margin-bottom: 18px; }
+    .product p { color: var(--text-soft); font-weight: 600; line-height: 1.6; letter-spacing: -0.02em; }
 
-    .final-cta {
-      padding: 140px 0;
-      background: var(--green);
-      color: var(--white);
-      border-top: 0;
-    }
-
-    .final-cta h2 {
-      max-width: 1120px;
-    }
-
-    .final-cta .section-copy {
-      color: rgba(255,255,255,0.88);
-    }
-
-    footer {
-      padding: 40px 0;
+    /* PARTNER */
+    .partner {
       background: var(--black);
       color: var(--white);
     }
-
-    .footer-row {
+    .partner .section-intro { color: rgba(255,255,255,0.7); }
+    .partner .kicker { color: var(--green); }
+    .partner-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .partner-card {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: var(--radius);
+      padding: 32px;
+      min-height: 460px;
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      gap: 22px;
-      flex-wrap: wrap;
-      font-weight: 700;
-      color: #c7c7c7;
+      background: #121212;
     }
+    .partner-card:nth-child(2) { background: #191919; }
+    .partner-card:nth-child(3) { background: #222222; }
+    .partner-card small { color: var(--green); text-transform: uppercase; font-weight: 900; }
+    .partner-card h3 { font-size: 2.2rem; line-height: 1.02; letter-spacing: -0.065em; margin: 20px 0; }
+    .partner-card p, .partner-card li { color: rgba(255,255,255,0.72); font-weight: 600; line-height: 1.56; }
+    .partner-card ul { padding-left: 18px; display: grid; gap: 8px; margin-top: 22px; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+    .final-cta {
+      background: var(--green);
+      color: var(--white);
+      border-top: 0;
+      padding: 130px 0;
     }
+    .final-cta .section-intro { color: rgba(255,255,255,0.84); }
+    .final-cta .kicker { color: var(--white); }
+    .final-cta .button { background: var(--black); color: var(--white); }
 
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
+    footer { background: var(--black); color: var(--white); padding: 42px 0; }
+    .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; color: rgba(255,255,255,0.68); font-weight: 700; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
     @media (max-width: 1100px) {
-      .container { width: min(100% - 42px, 1180px); }
+      .container { width: min(100% - 38px, 1180px); }
       nav ul { display: none; }
-      .hero-grid { grid-template-columns: 1fr; align-items: start; }
-      .hero-side { grid-template-columns: 80px 1fr; align-items: center; }
-      h1 { font-size: clamp(3.75rem, 12vw, 7rem); }
-      .section-label { grid-template-columns: 1fr; gap: 20px; }
-      .loop-diagram, .split-grid, .product-band { grid-template-columns: 1fr; }
-      .loop-step { border-right: 0; border-bottom: 1px solid var(--black); }
-      .loop-step:last-child { border-bottom: 0; }
-      .loop-step::after {
-        content: "↓";
-        right: auto;
-        left: 28px;
-        top: auto;
-        bottom: -18px;
-        transform: none;
-      }
+      .hero-layout, .section-head, .hero-copy { grid-template-columns: 1fr; }
+      .hero-graphic { min-height: 560px; }
+      h1 { font-size: clamp(3.6rem, 13vw, 7.2rem); }
+      .bento, .flow, .product-grid, .partner-grid { grid-template-columns: 1fr; }
+      .tile.wide { grid-column: auto; }
+      .flow-step { border-right: 0; border-bottom: 1px solid var(--black); }
+      .flow-step::after { right: 30px; top: auto; bottom: -14px; transform: rotate(90deg); }
+      .flow-step:last-child { border-bottom: 0; }
+      .graphic-bottom { grid-template-columns: 1fr; }
+      .metric { border-right: 0; border-bottom: 1px solid rgba(255,255,255,0.16); }
+      .metric:last-child { border-bottom: 0; }
     }
   </style>
 </head>
@@ -483,16 +532,16 @@
   <header>
     <div class="container nav">
       <a href="#home" class="logo" aria-label="FeedLoop home">
-        <span class="logo-mark"></span>
+        <span class="loop-logo"></span>
         <span>FeedLoop</span>
       </a>
       <nav>
         <ul>
           <li><a href="#about">About</a></li>
-          <li><a href="#impact">Impact</a></li>
-          <li><a href="#products">Products</a></li>
           <li><a href="#technology">Technology</a></li>
-          <li><a href="#partner">Partner with us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#impact">Impact</a></li>
+          <li><a href="#partner" class="nav-cta">Partner with us</a></li>
         </ul>
       </nav>
     </div>
@@ -500,266 +549,150 @@
 
   <main>
     <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <div class="eyebrow">Circular food infrastructure</div>
-          <h1>Food waste should not be <span class="underline">wasted.</span></h1>
+      <div class="container hero-layout">
+        <div class="hero-text reveal">
+          <div class="label">Circular bioconversion infrastructure</div>
+          <h1>Waste streams are supply chains in disguise.</h1>
+          <div class="hero-copy">
+            <div class="mini">Organic by-products → usable inputs</div>
+            <p>FeedLoop converts pre-consumer organic streams into insect protein, insect oil, and frass fertilizer for local feed and agriculture markets.</p>
+          </div>
+          <div class="hero-actions">
+            <a class="button" href="#partner">Partner with us</a>
+            <a class="button secondary" href="#loop">See the loop</a>
+          </div>
         </div>
-        <div class="hero-side reveal">
-          <button class="down-button" onclick="document.querySelector('#loop').scrollIntoView({behavior:'smooth'})" aria-label="Scroll to next section">↓</button>
-          <p>We turn organic by-products into protein, oil, and fertilizer through Black Soldier Fly bioconversion.</p>
+
+        <div class="hero-graphic reveal" aria-label="FeedLoop circular process graphic">
+          <div class="graphic-top"><span>FeedLoop System Map</span><span class="signal"></span></div>
+          <div class="loop-map">
+            <div class="loop-ring"></div>
+            <div class="node n1">Organic Streams<span>processors + farms</span></div>
+            <div class="node n2">BSF Conversion<span>larvae biomass</span></div>
+            <div class="node n3">Product Outputs<span>protein + oil + frass</span></div>
+            <div class="node n4">Local Markets<span>feed + soil</span></div>
+          </div>
+          <div class="graphic-bottom">
+            <div class="metric"><strong>01</strong><span>Input streams become supply</span></div>
+            <div class="metric"><strong>03</strong><span>Product pathways from one system</span></div>
+            <div class="metric"><strong>BC</strong><span>Built for regional deployment</span></div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="loop">
       <div class="container">
-        <div class="section-label reveal">
-          <div class="kicker">The loop</div>
+        <div class="section-head reveal">
+          <div class="kicker">The Loop</div>
           <div>
-            <h2>From organic by-products to agricultural inputs.</h2>
-            <p class="section-copy">FeedLoop connects waste suppliers, feed markets, and growers through one local circular system.</p>
+            <h2>A practical bridge between waste, feed, and soil.</h2>
+            <p class="section-intro">FeedLoop is designed as a circular operating system: organic material enters, biology converts it, and products return to agriculture.</p>
           </div>
         </div>
-
-        <div class="loop-diagram reveal">
-          <article class="loop-step">
-            <div class="loop-number">01 / INPUT</div>
-            <div>
-              <h3>Organic by-products</h3>
-              <p>Pre-consumer food and agriculture streams from processors, farms, packers, and distributors.</p>
-            </div>
-          </article>
-          <article class="loop-step">
-            <div class="loop-number">02 / CONVERSION</div>
-            <div>
-              <h3>BSF larvae</h3>
-              <p>Black Soldier Fly larvae convert organic material into nutrient-dense biomass.</p>
-            </div>
-          </article>
-          <article class="loop-step">
-            <div class="loop-number">03 / OUTPUTS</div>
-            <div>
-              <h3>Protein, oil, frass</h3>
-              <p>The process creates feed ingredients and organic fertilizer products.</p>
-            </div>
-          </article>
-          <article class="loop-step">
-            <div class="loop-number">04 / RETURN</div>
-            <div>
-              <h3>Back to agriculture</h3>
-              <p>Outputs return to feed and soil markets, keeping value circulating locally.</p>
-            </div>
-          </article>
+        <div class="flow reveal">
+          <article class="flow-step"><div class="num">01 / INPUT</div><div><h3>Organic by-products</h3><p>Pre-consumer food and agricultural streams from processors, farms, packers, and distributors.</p></div></article>
+          <article class="flow-step"><div class="num">02 / CONVERSION</div><div><h3>Larvae bioconversion</h3><p>Black Soldier Fly larvae convert organic material into nutrient-rich biomass.</p></div></article>
+          <article class="flow-step"><div class="num">03 / PROCESSING</div><div><h3>Separation and finishing</h3><p>Larvae biomass and residual frass are processed into usable product streams.</p></div></article>
+          <article class="flow-step"><div class="num">04 / MARKET</div><div><h3>Feed and agriculture</h3><p>Protein, oil, and fertilizer outputs move back into regional supply chains.</p></div></article>
         </div>
       </div>
     </section>
 
     <section id="about">
       <div class="container">
-        <div class="section-label reveal">
+        <div class="section-head reveal">
           <div class="kicker">About</div>
           <div>
-            <h2>Building a local circular protein system.</h2>
-            <p class="section-copy">FeedLoop is developing a regional bioconversion platform for Western Canada. Our goal is to turn underused organic streams into practical products for feed, fertilizer, and agriculture.</p>
+            <h2>Not waste management. Circular production infrastructure.</h2>
+            <p class="section-intro">FeedLoop exists to help food and agriculture systems capture more value from organic by-products. We are building a platform that makes circularity practical, local, and commercially useful.</p>
           </div>
         </div>
-
-        <div class="split-grid reveal">
-          <article class="block-card">
-            <div class="topline">01</div>
-            <div>
-              <h3>Waste becomes input.</h3>
-              <p>Organic by-products are treated as the beginning of a new supply chain, not the end of one.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">02</div>
-            <div>
-              <h3>Biology does the work.</h3>
-              <p>BSF larvae create a high-efficiency conversion pathway from organics to usable biomass.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">03</div>
-            <div>
-              <h3>Value stays local.</h3>
-              <p>Outputs support nearby feed, fertilizer, and agriculture markets.</p>
-            </div>
-          </article>
+        <div class="bento reveal">
+          <article class="tile wide dark"><div class="motif"></div><small>Positioning</small><div><h3>We turn disposal problems into production pathways.</h3><p>Organic streams should not only be diverted. They should become feedstock for the next layer of food and agriculture.</p></div></article>
+          <article class="tile green"><div class="motif"></div><small>Regional focus</small><div><h3>Western Canada first.</h3><p>Built around local supply chains, local processors, and local agricultural markets.</p></div></article>
+          <article class="tile"><small>Model</small><div><h3>Input. Convert. Return.</h3><p>A simple operating model that connects waste suppliers, feed buyers, and fertilizer buyers.</p></div></article>
+          <article class="tile"><small>Approach</small><div><h3>Biology with infrastructure discipline.</h3><p>Natural conversion, designed for repeatable and scalable deployment.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="inverse" id="technology">
+    <section id="technology">
       <div class="container">
-        <div class="section-label reveal">
+        <div class="section-head reveal">
           <div class="kicker">Technology</div>
           <div>
-            <h2>Bioconversion infrastructure for organic streams.</h2>
-            <p class="section-copy">Our system uses Black Soldier Fly larvae in a controlled production environment to convert organic material into biomass and fertilizer outputs.</p>
+            <h2>High-efficiency biology inside a controlled system.</h2>
+            <p class="section-intro">Black Soldier Fly larvae are the biological engine. FeedLoop’s role is to build the intake, production, processing, and market pathways around them.</p>
           </div>
         </div>
-
-        <div class="split-grid reveal">
-          <article class="block-card">
-            <div class="topline">Biology</div>
-            <div>
-              <h3>Black Soldier Fly larvae</h3>
-              <p>A natural conversion engine for organic material.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">System</div>
-            <div>
-              <h3>Controlled production</h3>
-              <p>Designed around consistent intake, processing, rearing, drying, and separation.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">Scale</div>
-            <div>
-              <h3>Modular deployment</h3>
-              <p>Built to grow with regional waste supply and product demand.</p>
-            </div>
-          </article>
+        <div class="bento reveal">
+          <article class="tile"><small>Biology</small><div><h3>Black Soldier Fly larvae</h3><p>A natural converter of organic material into nutrient-dense biomass.</p></div></article>
+          <article class="tile"><small>Operations</small><div><h3>Controlled production</h3><p>Consistent intake, preparation, rearing, drying, and product separation.</p></div></article>
+          <article class="tile dark"><div class="motif"></div><small>Infrastructure</small><div><h3>Designed to scale with regional demand.</h3><p>Modular deployment means the system can grow with available feedstock and product markets.</p></div></article>
         </div>
       </div>
     </section>
 
     <section id="products">
       <div class="container">
-        <div class="section-label reveal">
+        <div class="section-head reveal">
           <div class="kicker">Products</div>
           <div>
-            <h2>Three product streams from one circular process.</h2>
-            <p class="section-copy">FeedLoop is built as a product platform, not just a waste diversion service.</p>
+            <h2>Three outputs from one circular process.</h2>
+            <p class="section-intro">The value of the system is in what it produces: ingredients and inputs that can move back into feed and agriculture.</p>
           </div>
         </div>
-
-        <div class="product-band reveal">
-          <article class="product">
-            <div class="product-symbol">01</div>
-            <div>
-              <h3>Insect protein meal</h3>
-              <p>A sustainable protein ingredient for animal feed applications.</p>
-            </div>
-          </article>
-          <article class="product">
-            <div class="product-symbol">02</div>
-            <div>
-              <h3>Insect oil</h3>
-              <p>A functional fat source for feed and pet nutrition applications.</p>
-            </div>
-          </article>
-          <article class="product">
-            <div class="product-symbol">03</div>
-            <div>
-              <h3>Frass fertilizer</h3>
-              <p>An organic soil input that returns nutrients to farms and growers.</p>
-            </div>
-          </article>
+        <div class="product-grid reveal">
+          <article class="product"><div class="product-code">01</div><div><h3>Insect protein meal</h3><p>A sustainable protein ingredient for animal feed applications, including poultry, aquaculture, pet food, and feed formulation markets.</p></div></article>
+          <article class="product"><div class="product-code">02</div><div><h3>Insect oil</h3><p>A functional fat source that creates additional value from larvae biomass and can support feed and pet nutrition applications.</p></div></article>
+          <article class="product"><div class="product-code">03</div><div><h3>Frass fertilizer</h3><p>An organic soil input that returns nutrients and biological value to growers, helping close nutrient loops.</p></div></article>
         </div>
       </div>
     </section>
 
     <section id="impact">
       <div class="container">
-        <div class="section-label reveal">
+        <div class="section-head reveal">
           <div class="kicker">Impact</div>
           <div>
-            <h2>Waste diversion. Local protein. Healthier soil.</h2>
-            <p class="section-copy">Circular systems only scale when they also make commercial sense. FeedLoop is designed to create value for processors, feed buyers, fertilizer buyers, and growers.</p>
+            <h2>Built for measurable value, not vague sustainability.</h2>
+            <p class="section-intro">Circular systems work when every partner has a reason to participate. FeedLoop is designed around commercial and environmental alignment.</p>
           </div>
         </div>
-
-        <div class="split-grid reveal">
-          <article class="block-card">
-            <div class="topline">Waste</div>
-            <div>
-              <h3>Reduce disposal friction.</h3>
-              <p>Create a better pathway for consistent organic streams.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">Feed</div>
-            <div>
-              <h3>Support new protein supply.</h3>
-              <p>Produce alternative inputs closer to the markets that need them.</p>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">Soil</div>
-            <div>
-              <h3>Return nutrients to land.</h3>
-              <p>Use frass-based products to help close nutrient loops.</p>
-            </div>
-          </article>
+        <div class="bento reveal">
+          <article class="tile green"><small>Waste</small><div><h3>Reduce disposal friction.</h3><p>A better outlet for consistent organic streams.</p></div></article>
+          <article class="tile"><small>Protein</small><div><h3>Support new feed inputs.</h3><p>Regional ingredients for a more resilient animal nutrition supply chain.</p></div></article>
+          <article class="tile"><small>Soil</small><div><h3>Return nutrients to land.</h3><p>Fertilizer outputs that move value back into agriculture.</p></div></article>
         </div>
       </div>
     </section>
 
-    <section class="inverse" id="partner">
+    <section class="partner" id="partner">
       <div class="container">
-        <div class="section-label reveal">
-          <div class="kicker">Partner with us</div>
+        <div class="section-head reveal">
+          <div class="kicker">Partner With Us</div>
           <div>
-            <h2>Built for three partner groups.</h2>
-            <p class="section-copy">We are looking for early conversations across organic waste supply, feed ingredient markets, and fertilizer distribution.</p>
+            <h2>Three ways to build the loop.</h2>
+            <p class="section-intro">We are looking for early partners across organic waste supply, feed ingredient markets, and fertilizer distribution.</p>
           </div>
         </div>
-
-        <div class="split-grid reveal">
-          <article class="block-card">
-            <div class="topline">Waste suppliers</div>
-            <div>
-              <h3>Divert organic by-products.</h3>
-              <ul>
-                <li>Food processors</li>
-                <li>Farms and packers</li>
-                <li>Breweries and bakeries</li>
-              </ul>
-              <div class="partner-actions"><a class="button" href="mailto:hello@feedloop.bio?subject=Waste%20supplier%20partnership">Start a conversation</a></div>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">Feed buyers</div>
-            <div>
-              <h3>Source protein and oil.</h3>
-              <ul>
-                <li>Poultry</li>
-                <li>Aquaculture</li>
-                <li>Pet food and feed mills</li>
-              </ul>
-              <div class="partner-actions"><a class="button" href="mailto:hello@feedloop.bio?subject=Feed%20buyer%20partnership">Explore feed ingredients</a></div>
-            </div>
-          </article>
-          <article class="block-card">
-            <div class="topline">Fertilizer buyers</div>
-            <div>
-              <h3>Bring nutrients back to soil.</h3>
-              <ul>
-                <li>Organic growers</li>
-                <li>Soil companies</li>
-                <li>Fertilizer distributors</li>
-              </ul>
-              <div class="partner-actions"><a class="button" href="mailto:hello@feedloop.bio?subject=Fertilizer%20buyer%20partnership">Explore frass</a></div>
-            </div>
-          </article>
+        <div class="partner-grid reveal">
+          <article class="partner-card"><div><small>Waste suppliers</small><h3>Divert organic by-products.</h3><p>For processors, farms, packers, breweries, bakeries, and distributors with consistent organic streams.</p><ul><li>Reduce disposal friction</li><li>Create a circular pathway</li><li>Support local food systems</li></ul></div><a class="button" href="mailto:hello@feedloop.bio?subject=Waste%20supplier%20partnership">Start a conversation</a></article>
+          <article class="partner-card"><div><small>Feed buyers</small><h3>Source protein and oil.</h3><p>For poultry, aquaculture, pet food, feed mills, and ingredient buyers exploring alternative inputs.</p><ul><li>Explore insect protein meal</li><li>Evaluate insect oil applications</li><li>Build regional supply relationships</li></ul></div><a class="button" href="mailto:hello@feedloop.bio?subject=Feed%20buyer%20partnership">Explore feed ingredients</a></article>
+          <article class="partner-card"><div><small>Fertilizer buyers</small><h3>Bring nutrients back to soil.</h3><p>For organic growers, soil companies, fertilizer distributors, garden centres, and agriculture partners.</p><ul><li>Access organic soil inputs</li><li>Support regenerative agriculture</li><li>Close local nutrient loops</li></ul></div><a class="button" href="mailto:hello@feedloop.bio?subject=Fertilizer%20buyer%20partnership">Explore frass</a></article>
         </div>
       </div>
     </section>
 
     <section class="final-cta" id="contact">
       <div class="container">
-        <div class="section-label reveal">
-          <div class="kicker" style="color: white;">Contact</div>
+        <div class="section-head reveal">
+          <div class="kicker">Contact</div>
           <div>
-            <h2>Let’s build the loop.</h2>
-            <p class="section-copy">If you generate organic by-products, buy feed ingredients, distribute fertilizer, or want to help build circular food infrastructure, we’d love to talk.</p>
-            <div class="partner-actions">
-              <a class="button dark" href="mailto:hello@feedloop.bio">hello@feedloop.bio</a>
-            </div>
+            <h2>Let’s build a circular food system that actually works.</h2>
+            <p class="section-intro">If you generate organic by-products, buy feed ingredients, distribute fertilizer, or want to help build circular food infrastructure, we’d love to talk.</p>
+            <div class="hero-actions"><a class="button" href="mailto:hello@feedloop.bio">hello@feedloop.bio</a></div>
           </div>
         </div>
       </div>
