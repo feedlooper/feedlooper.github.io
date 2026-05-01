@@ -10,20 +10,22 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #06130e;
-      --bg-2: #0b1f17;
-      --cream: #f5ead3;
-      --cream-2: #fff8e8;
-      --muted: #b8c8ba;
-      --muted-2: #829487;
-      --green: #92d75f;
-      --lime: #dfff75;
-      --deep-green: #1f7a4d;
-      --orange: #e6a84d;
-      --card: rgba(255, 255, 255, 0.075);
-      --card-2: rgba(255, 255, 255, 0.105);
-      --border: rgba(255, 255, 255, 0.14);
-      --shadow: 0 26px 90px rgba(0, 0, 0, 0.42);
+      --bg: #050705;
+      --bg-2: #10120f;
+      --cream: #ffffff;
+      --cream-2: #f5f5f2;
+      --muted: #c8c9c5;
+      --muted-2: #8f918b;
+      --green: #6BAA27;
+      --lime: #8edb3f;
+      --deep-green: #345c18;
+      --charcoal: #43444b;
+      --black: #000000;
+      --white: #ffffff;
+      --card: rgba(255, 255, 255, 0.07);
+      --card-2: rgba(255, 255, 255, 0.11);
+      --border: rgba(255, 255, 255, 0.16);
+      --shadow: 0 26px 90px rgba(0, 0, 0, 0.48);
       --radius: 32px;
     }
 
@@ -32,10 +34,10 @@
     body {
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background:
-        radial-gradient(circle at 10% 0%, rgba(146, 215, 95, 0.24), transparent 30%),
-        radial-gradient(circle at 86% 5%, rgba(31, 122, 77, 0.35), transparent 32%),
-        radial-gradient(circle at 45% 65%, rgba(230, 168, 77, 0.08), transparent 34%),
-        var(--bg);
+        radial-gradient(circle at 10% 0%, rgba(107, 170, 39, 0.28), transparent 30%),
+        radial-gradient(circle at 86% 5%, rgba(67, 68, 75, 0.42), transparent 34%),
+        radial-gradient(circle at 45% 65%, rgba(107, 170, 39, 0.08), transparent 36%),
+        linear-gradient(135deg, #050705 0%, #10120f 48%, #000000 100%);
       color: var(--cream);
       overflow-x: hidden;
     }
@@ -103,8 +105,8 @@
     }
 
     .btn:hover { transform: translateY(-2px); }
-    .btn-primary { background: var(--cream); color: #07130e; }
-    .btn-primary:hover { background: var(--cream-2); }
+    .btn-primary { background: var(--green); color: var(--white); border-color: rgba(107, 170, 39, 0.72); }
+    .btn-primary:hover { background: #5f9822; }
     .btn-secondary { background: rgba(255,255,255,0.07); color: var(--cream); }
     .btn-secondary:hover { background: rgba(255,255,255,0.12); }
 
@@ -146,16 +148,16 @@
     }
 
     h1 {
-      font-size: clamp(3.15rem, 7vw, 7.1rem);
-      line-height: 0.88;
-      letter-spacing: -0.085em;
-      max-width: 900px;
+      font-size: clamp(3rem, 6.2vw, 6.2rem);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
+      max-width: 980px;
     }
 
     h2 {
-      font-size: clamp(2.35rem, 5vw, 4.7rem);
-      line-height: 0.94;
-      letter-spacing: -0.075em;
+      font-size: clamp(2.25rem, 4.6vw, 4.35rem);
+      line-height: 1.02;
+      letter-spacing: -0.055em;
     }
 
     h3 { letter-spacing: -0.035em; }
