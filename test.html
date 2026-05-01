@@ -30,11 +30,6 @@
       color: var(--black);
       overflow-x: hidden;
     }
-
-    body::selection {
-      background: var(--green);
-      color: var(--white);
-    }
     a { color: inherit; text-decoration: none; }
     .container {
       width: min(1200px, calc(100% - 96px));
@@ -42,17 +37,6 @@
     }
 
     /* Header over hero */
-    .progress-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      width: 0%;
-      background: var(--green);
-      z-index: 100;
-      transition: width 0.08s linear;
-    }
-
     header {
       position: fixed;
       inset: 0 0 auto 0;
@@ -139,22 +123,6 @@
         linear-gradient(135deg, rgba(107,170,39,0.22), rgba(5,6,4,0.12)),
         repeating-linear-gradient(135deg, rgba(255,255,255,0.18) 0 1px, transparent 1px 18px),
         #d8d2c5;
-      isolation: isolate;
-    }
-
-    .media-placeholder::before {
-      content: "";
-      position: absolute;
-      inset: -30%;
-      z-index: 0;
-      background: radial-gradient(circle at 30% 20%, rgba(107,170,39,0.32), transparent 26%),
-                  radial-gradient(circle at 70% 80%, rgba(255,255,255,0.25), transparent 24%);
-      animation: ambientDrift 14s ease-in-out infinite alternate;
-    }
-
-    @keyframes ambientDrift {
-      0% { transform: translate3d(-2%, -1%, 0) scale(1); }
-      100% { transform: translate3d(3%, 2%, 0) scale(1.06); }
     }
 
     .media-placeholder.dark {
@@ -191,7 +159,6 @@
       align-items: end;
       color: var(--white);
       padding: 150px 0 58px;
-      background-attachment: fixed;
     }
 
     .hero::after {
@@ -202,19 +169,6 @@
       background:
         linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0.18) 36%, rgba(0,0,0,0.76)),
         linear-gradient(to right, rgba(0,0,0,0.52), rgba(0,0,0,0.1));
-      pointer-events: none;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background-image: linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
-      background-size: 68px 68px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 70%);
-      pointer-events: none;
     }
 
     .hero .placeholder-note {
@@ -288,12 +242,6 @@
       background: var(--green);
       color: var(--white);
       font-size: 1.5rem;
-      animation: pulseDown 1.8s ease-in-out infinite;
-    }
-
-    @keyframes pulseDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(7px); }
     }
 
     .news-card {
@@ -391,11 +339,6 @@
       display: grid;
       align-items: end;
       border: 1px solid var(--black);
-      transform: translateZ(0);
-    }
-
-    .loop-stage .media-fill {
-      transform: scale(1.05);
     }
     .loop-stage::after {
       content: "";
@@ -425,31 +368,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s ease, background 0.25s ease;
-    }
-
-    .loop-step:hover {
-      transform: translateY(-8px);
-      background: rgba(255,255,255,0.18);
-    }
-
-    .loop-step::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 4px;
-      width: 100%;
-      background: var(--green);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.35s ease;
-    }
-
-    .loop-step:hover::before {
-      transform: scaleX(1);
     }
     .loop-step small { color: var(--green); font-weight: 800; }
     .loop-step h3 { font-size: 1.45rem; line-height: 1.08; letter-spacing: -0.045em; }
@@ -469,12 +387,6 @@
       min-height: 610px;
       display: grid;
       grid-template-rows: 330px 1fr;
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 24px 70px rgba(5, 6, 4, 0.14);
     }
     .product-media { position: relative; display: grid; place-items: center; }
     .product-body { padding: 28px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -507,12 +419,6 @@
       overflow: hidden;
       display: grid;
       grid-template-rows: 250px 1fr;
-      transition: transform 0.28s ease, box-shadow 0.28s ease;
-    }
-
-    .partner-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
     }
     .partner-body { padding: 28px; display: flex; flex-direction: column; gap: 22px; justify-content: space-between; min-height: 360px; }
     .partner-body h3 { font-size: 1.85rem; line-height: 1.04; letter-spacing: -0.055em; }
@@ -559,10 +465,47 @@
     footer { padding: 38px 0; color: var(--muted); font-weight: 750; }
     .footer-row { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
 
-    .reveal {
-      opacity: 0;
-      transform: translateY(28px) scale(0.985);
-      transition: opacity 0.85s ease, transform 0.85s cubic-bezier(.2,.8,.2,1);
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1050px) {
+      .container {
+        width: min(100% - 40px, 900px);
+      }
+
+      nav ul { display: none; }
+
+      h1 {
+        font-size: clamp(2.6rem, 10vw, 4.8rem);
+        line-height: 1.05;
+        letter-spacing: -0.045em;
+      }
+
+      .hero {
+        padding: 120px 0 40px;
+      }
+
+      .hero-bottom {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .news-card {
+        grid-template-columns: 1fr;
+      }
+
+      .feature, .section-head, .loop-steps, .product-track, .partner-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-media, .feature-card, .loop-stage {
+        min-height: 460px;
+      }
+
+      .dark-band {
+        margin: 0 12px;
+        border-radius: 24px;
+      }
     }
       nav ul { display: none; }
       .hero-bottom, .section-head, .feature, .loop-steps, .product-track, .partner-grid { grid-template-columns: 1fr; }
@@ -576,7 +519,6 @@
   </style>
 </head>
 <body>
-  <div class="progress-bar" id="progressBar"></div>
   <header id="siteHeader">
     <div class="container nav">
       <a class="logo" href="#home"><span class="logo-mark"></span><span>FeedLoop</span></a>
@@ -777,27 +719,9 @@
     reveals.forEach((el) => observer.observe(el));
 
     const header = document.querySelector('#siteHeader');
-    const progressBar = document.querySelector('#progressBar');
-    const parallaxItems = document.querySelectorAll('.hero-content, .loop-content, .cta-content');
-
-    function updateScrollEffects() {
-      const scrollY = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = docHeight > 0 ? (scrollY / docHeight) * 100 : 0;
-      progressBar.style.width = progress + '%';
-      header.classList.toggle('scrolled', scrollY > 60);
-
-      parallaxItems.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight && rect.bottom > 0) {
-          const shift = (window.innerHeight - rect.top) * 0.018;
-          el.style.transform = `translateY(${-Math.min(shift, 18)}px)`;
-        }
-      });
-    }
-
-    window.addEventListener('scroll', updateScrollEffects, { passive: true });
-    updateScrollEffects();
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 60);
+    });
   </script>
 </body>
 </html>
